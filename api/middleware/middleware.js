@@ -42,8 +42,14 @@ async function validateUserId(req, res, next) {
 
 function validateUser(req, res, next) {
   // DO YOUR MAGIC
-  console.log(validateUser);
-  next();
+  const { name } = req.body;
+  if (!name) {
+    req.status(400).json({
+      message: "missing required name field",
+    });
+  } else {
+    next();
+  }
 }
 
 /**- `validatePost()`
